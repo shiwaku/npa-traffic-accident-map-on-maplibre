@@ -2,7 +2,7 @@
 ## Public Website
 https://shiwaku.github.io/npa-traffic-accident-map-on-maplibre/#15/35.92275/139.48775
 
-![image](https://github.com/shi-works/npa-traffic-accident-map-on-maplibre-gl-js/assets/71203808/f279edb2-aaca-49f6-b539-4081acac7804)
+<img width="1912" height="897" alt="image" src="https://github.com/user-attachments/assets/a07a2740-017b-42ca-ae7f-39ecb9f717ca" />
 
 ## 警察庁
 - 警察庁 交通事故統計情報のオープンデータ（2019年、2020年、2021年、2022年、2023年）
