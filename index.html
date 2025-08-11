@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>警察庁 交通事故マップ（PMTiles）</title>
+  <title>警察庁 交通事故マップ</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
@@ -147,23 +147,23 @@
   <!--<pre id="info"></pre>-->
   <div id="county-legend" class="legend">
     <div class="circle" style="
-          background-color: rgb(255, 0, 0);
+          background-color: #FF003F;
           outline: 1px solid;
-          outline-color: rgb(203, 0, 0);
+          outline-color: #FFFFFF;
           display: inline-block;
         "></div>
     <span style="display: inline-block; margin-left: 5px">死亡事故</span><br />
     <div class="circle" style="
-          background-color: rgb(229, 229, 255);
+          background-color: #003FFF;
           outline: 1px solid;
-          outline-color: rgb(0, 0, 255);
+          outline-color: #FFFFFF;
           display: inline-block;
         "></div>
     <span style="display: inline-block; margin-left: 5px">負傷事故</span><br />
     <div class="circle" style="
-          background-color: rgb(216, 255, 204);
+          background-color: #009800;
           outline: 1px solid;
-          outline-color: rgb(38, 152, 0);
+          outline-color: #FFFFFF;
           display: inline-block;
         "></div>
     <span style="display: inline-block; margin-left: 5px">小学校</span><br />
@@ -359,65 +359,6 @@
         },
       });
 
-      // 小学校ソース
-      map.addSource("pmtiles-school", {
-        type: "vector",
-        url: "pmtiles://https://xs489works.xsrv.jp/pmtiles-data/traffic-accident/P29-21_primary_school.pmtiles",
-        attribution:
-          '<a href="https://nlftp.mlit.go.jp/">国土数値情報 学校データを加工して作成</a>',
-      });
-
-      // 小学校ポイントレイヤ
-      map.addLayer({
-        id: "school-1",
-        source: "pmtiles-school",
-        "source-layer": "P2921_primary_school",
-        type: "circle",
-        minzoom: 13,
-        maxzoom: 23,
-        paint: {
-          "circle-color": "rgba(38, 152, 0, 1)",
-          "circle-blur": 0.8,
-          "circle-radius": 12,
-        },
-      });
-
-      // 小学校ポイントレイヤ
-      map.addLayer({
-        id: "school-2",
-        source: "pmtiles-school",
-        "source-layer": "P2921_primary_school",
-        type: "circle",
-        minzoom: 13,
-        maxzoom: 23,
-        paint: {
-          "circle-color": "rgba(216, 255, 204, 1)",
-          "circle-radius": 6,
-        },
-      });
-
-      // 小学校ラベルレイヤ
-      map.addLayer({
-        id: "school-label",
-        type: "symbol",
-        source: "pmtiles-school",
-        "source-layer": "P2921_primary_school",
-        minzoom: 13,
-        maxzoom: 23,
-        layout: {
-          "text-field": ["get", "P29_004"],
-          "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-          "text-size": 12,
-          "text-offset": [0, -1.2],
-        },
-        paint: {
-          "text-color": "rgba(0,　152,　0, 1)",
-          "text-halo-blur": 1,
-          "text-halo-color": "rgba(255, 255, 255, 1)",
-          "text-halo-width": 1.5,
-        },
-      });
-
       // 交通事故データ
       map.addSource("pmtiles-jiko", {
         type: "vector",
@@ -426,6 +367,64 @@
           '<a href="https://www.npa.go.jp/publications/statistics/koutsuu/opendata/index_opendata.html">交通事故統計情報のオープンデータ（2019～2023年）（警察庁Webサイト）を加工して作成</a>',
       });
 
+      // 負傷事故ポイントレイヤ
+      map.addLayer({
+        id: "fushoujiko-1",
+        source: "pmtiles-jiko",
+        "source-layer": "honhyo_20192023_convert",
+        type: "circle",
+        paint: {
+          "circle-color": "#FFFFFF",
+          "circle-radius": 8,
+        },
+      });
+
+      // 負傷事故ポイントレイヤ
+      map.addLayer({
+        id: "fushoujiko-2",
+        source: "pmtiles-jiko",
+        "source-layer": "honhyo_20192023_convert",
+        type: "circle",
+        paint: {
+          "circle-color": "#003FFF",
+          "circle-radius": 6,
+        },
+      });
+
+      // 負傷事故ラベルレイヤ
+      map.addLayer({
+        id: "fushoujiko-label",
+        type: "symbol",
+        source: "pmtiles-jiko",
+        "source-layer": "honhyo_20192023_convert",
+        minzoom: 16,
+        maxzoom: 23,
+        layout: {
+          "text-field": [
+            "concat",
+            ["get", "発生日時_年"],
+            "/",
+            ["get", "発生日時_月"],
+            "/",
+            ["get", "発生日時_日"],
+          ],
+          "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+          "text-offset": [0, -1],
+          "text-allow-overlap": true,
+          "text-size": 12,
+        },
+        paint: {
+          "text-color": "rgba(0, 0, 255, 1)",
+          "text-halo-color": "rgba(255, 255, 255, 1)",
+          "text-halo-width": 1,
+        },
+      });
+
+      // 負傷事故レイヤのフィルタ設定
+      map.setFilter("fushoujiko-1", ["==", "事故内容", "負傷事故"]);
+      map.setFilter("fushoujiko-2", ["==", "事故内容", "負傷事故"]);
+      map.setFilter("fushoujiko-label", ["==", "事故内容", "負傷事故"]);
+
       // 死亡事故ポイントレイヤ
       map.addLayer({
         id: "shiboujiko-1",
@@ -433,9 +432,8 @@
         "source-layer": "honhyo_20192023_convert",
         type: "circle",
         paint: {
-          "circle-color": "rgba(203, 0, 0, 1)",
-          "circle-blur": 1,
-          "circle-radius": 12,
+          "circle-color": "#FFFFFF",
+          "circle-radius": 8,
         },
       });
 
@@ -446,8 +444,8 @@
         "source-layer": "honhyo_20192023_convert",
         type: "circle",
         paint: {
-          "circle-color": "rgba(255, 0, 0, 1)",
-          "circle-radius": 5,
+          "circle-color": "#FF003F",
+          "circle-radius": 6,
         },
       });
 
@@ -485,64 +483,64 @@
       map.setFilter("shiboujiko-2", ["==", "事故内容", "死亡事故"]);
       map.setFilter("shiboujiko-label", ["==", "事故内容", "死亡事故"]);
 
-      // 負傷事故ポイントレイヤ
+
+      // 小学校ソース
+      map.addSource("pmtiles-school", {
+        type: "vector",
+        url: "pmtiles://https://xs489works.xsrv.jp/pmtiles-data/traffic-accident/P29-21_primary_school.pmtiles",
+        attribution:
+          '<a href="https://nlftp.mlit.go.jp/">国土数値情報 学校データを加工して作成</a>',
+      });
+
+      // 小学校ポイントレイヤ
       map.addLayer({
-        id: "fushoujiko-1",
-        source: "pmtiles-jiko",
-        "source-layer": "honhyo_20192023_convert",
+        id: "school-1",
+        source: "pmtiles-school",
+        "source-layer": "P2921_primary_school",
         type: "circle",
+        minzoom: 13,
+        maxzoom: 23,
         paint: {
-          "circle-color": "rgba(0, 0, 255, 0.6)",
-          "circle-blur": 0.8,
-          "circle-radius": 12,
+          "circle-color": "#FFFFFF",
+          "circle-radius": 8,
         },
       });
 
-      // 負傷事故ポイントレイヤ
+      // 小学校ポイントレイヤ
       map.addLayer({
-        id: "fushoujiko-2",
-        source: "pmtiles-jiko",
-        "source-layer": "honhyo_20192023_convert",
+        id: "school-2",
+        source: "pmtiles-school",
+        "source-layer": "P2921_primary_school",
         type: "circle",
+        minzoom: 13,
+        maxzoom: 23,
         paint: {
-          "circle-color": "rgba(229, 229, 255, 1)",
-          "circle-radius": 5,
+          "circle-color": "#009800",
+          "circle-radius": 6,
         },
       });
 
-      // 負傷事故ラベルレイヤ
+      // 小学校ラベルレイヤ
       map.addLayer({
-        id: "fushoujiko-label",
+        id: "school-label",
         type: "symbol",
-        source: "pmtiles-jiko",
-        "source-layer": "honhyo_20192023_convert",
-        minzoom: 16,
+        source: "pmtiles-school",
+        "source-layer": "P2921_primary_school",
+        minzoom: 13,
         maxzoom: 23,
         layout: {
-          "text-field": [
-            "concat",
-            ["get", "発生日時_年"],
-            "/",
-            ["get", "発生日時_月"],
-            "/",
-            ["get", "発生日時_日"],
-          ],
+          "text-field": ["get", "P29_004"],
           "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-          "text-offset": [0, -1],
-          "text-allow-overlap": true,
           "text-size": 12,
+          "text-offset": [0, -1.2],
         },
         paint: {
-          "text-color": "rgba(0, 0, 255, 1)",
+          "text-color": "rgba(0,　152,　0, 1)",
+          "text-halo-blur": 1,
           "text-halo-color": "rgba(255, 255, 255, 1)",
-          "text-halo-width": 1,
+          "text-halo-width": 1.5,
         },
       });
-
-      // 負傷事故レイヤのフィルタ設定
-      map.setFilter("fushoujiko-1", ["==", "事故内容", "負傷事故"]);
-      map.setFilter("fushoujiko-2", ["==", "事故内容", "負傷事故"]);
-      map.setFilter("fushoujiko-label", ["==", "事故内容", "負傷事故"]);
 
       map.showTileBoundaries = false;
 
