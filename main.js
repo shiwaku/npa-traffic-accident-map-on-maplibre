@@ -5,7 +5,7 @@ maplibregl.addProtocol("pmtiles", protocol.tile);
 // マップの初期化
 const map = new maplibregl.Map({
   container: "map",
-  style: './std.json',
+  style: "./std.json",
   // style: 'https://tile2.openstreetmap.jp/styles/osm-bright-ja/style.json',
   // style: "https://tile.openstreetmap.jp/styles/maptiler-basic-ja/style.json",
   zoom: 15,
@@ -117,9 +117,7 @@ map.on("load", () => {
 
   // スライダーで空中写真レイヤの不透明度を制御
   const sliderOpactiy = document.getElementById("slider-opacity");
-  const sliderOpactiyValue = document.getElementById(
-    "slider-opacity-value"
-  );
+  const sliderOpactiyValue = document.getElementById("slider-opacity-value");
 
   // 不透明度の初期表示
   map.setPaintProperty("seamlessphoto", "raster-opacity", 0.5);
@@ -223,7 +221,7 @@ map.on("load", () => {
         "/",
         ["get", "発生日時_日"],
       ],
-      "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+      "text-font": ["NotoSansJP-Regular"],
       "text-offset": [0, -1],
       "text-allow-overlap": true,
       "text-size": 12,
@@ -281,7 +279,7 @@ map.on("load", () => {
         "/",
         ["get", "発生日時_日"],
       ],
-      "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+      "text-font": ["NotoSansJP-Regular"],
       "text-offset": [0, -1],
       "text-allow-overlap": true,
       "text-size": 12,
@@ -297,7 +295,6 @@ map.on("load", () => {
   map.setFilter("shiboujiko-1", ["==", "事故内容", "死亡事故"]);
   map.setFilter("shiboujiko-2", ["==", "事故内容", "死亡事故"]);
   map.setFilter("shiboujiko-label", ["==", "事故内容", "死亡事故"]);
-
 
   // 小学校ソース
   map.addSource("pmtiles-school", {
@@ -399,17 +396,14 @@ map.on("click", "shiboujiko-1", (e) => {
   var dorosenkei = e.features[0].properties["道路線形"];
   var shototsuchiten = e.features[0].properties["衝突地点"];
   var zonkisei = e.features[0].properties["ゾーン規制"];
-  var chuobunritaishisetsuto =
-    e.features[0].properties["中央分離帯施設等"];
+  var chuobunritaishisetsuto = e.features[0].properties["中央分離帯施設等"];
   var hoshadokubun = e.features[0].properties["歩車道区分"];
   var jikoruikei = e.features[0].properties["事故類型"];
 
   var nenrei_a = e.features[0].properties["年齢（当事者A）"];
   var nenrei_b = e.features[0].properties["年齢（当事者B）"];
-  var tojishashubetsu_a =
-    e.features[0].properties["当事者種別（当事者A）"];
-  var tojishashubetsu_b =
-    e.features[0].properties["当事者種別（当事者B）"];
+  var tojishashubetsu_a = e.features[0].properties["当事者種別（当事者A）"];
+  var tojishashubetsu_b = e.features[0].properties["当事者種別（当事者B）"];
   var yotobetsu_a = e.features[0].properties["用途別（当事者A）"];
   var yotobetsu_b = e.features[0].properties["用途別（当事者B）"];
   var sharyokeijo_a = e.features[0].properties["車両形状（当事者A）"];
@@ -434,10 +428,8 @@ map.on("click", "shiboujiko-1", (e) => {
     e.features[0].properties["車両の損壊程度（当事者A）"];
   var sharyonosonkaiteido_b =
     e.features[0].properties["車両の損壊程度（当事者B）"];
-  var eabaggunosobi_a =
-    e.features[0].properties["エアバッグの装備（当事者A）"];
-  var eabaggunosobi_b =
-    e.features[0].properties["エアバッグの装備（当事者B）"];
+  var eabaggunosobi_a = e.features[0].properties["エアバッグの装備（当事者A）"];
+  var eabaggunosobi_b = e.features[0].properties["エアバッグの装備（当事者B）"];
   var saidoeabaggunosobi_a =
     e.features[0].properties["サイドエアバッグの装備（当事者A）"];
   var saidoeabaggunosobi_b =
@@ -452,227 +444,227 @@ map.on("click", "shiboujiko-1", (e) => {
     .setHTML(
       // 事故内容
       "<b>" +
-      "<big>" +
-      '<font color="red">' +
-      "事故内容: " +
-      jikonaiyo +
-      "</font>" +
-      "</big>" +
-      "</b>" +
-      "<br>" +
-      "発生日時: " +
-      hasseinichiji +
-      "<br>" +
-      "路線名: " +
-      rosemmei +
-      "<br>" +
-      "上下線: " +
-      jogesen +
-      "<br>" +
-      "死者数: " +
-      shishasu +
-      "<br>" +
-      "負傷者数: " +
-      fushoshasu +
-      "<br>" +
-      "天候: " +
-      tenko +
-      "<br>" +
-      "地形: " +
-      chikei +
-      "<br>" +
-      "路面状態: " +
-      romenjotai +
-      "<br>" +
-      "道路形状: " +
-      dorokeijo +
-      "<br>" +
-      "信号機: " +
-      shingoki +
-      "<br>" +
-      "車道幅員: " +
-      shadofukuin +
-      "<br>" +
-      "道路線形: " +
-      dorosenkei +
-      "<br>" +
-      "衝突地点: " +
-      shototsuchiten +
-      "<br>" +
-      "ゾーン規制: " +
-      zonkisei +
-      "<br>" +
-      "中央分離帯施設等: " +
-      chuobunritaishisetsuto +
-      "<br>" +
-      "歩車道区分: " +
-      hoshadokubun +
-      "<br>" +
-      "事故類型: " +
-      jikoruikei +
-      "<br>" +
-      // 表形式
-      "<table>" +
-      "<tr>" +
-      '<th width="140">' +
-      "項目" +
-      "</th> " +
-      '<th width="100">' +
-      "当事者A" +
-      "</th> " +
-      '<th width="100">' +
-      "当事者B" +
-      "</th>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "年齢層" +
-      "</td> " +
-      "<td>" +
-      nenrei_a +
-      "</td> " +
-      "<td>" +
-      nenrei_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "当事者種別" +
-      "</td> " +
-      "<td>" +
-      tojishashubetsu_a +
-      "</td> " +
-      "<td>" +
-      tojishashubetsu_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "車両の衝突部位" +
-      "</td> " +
-      "<td>" +
-      sharyonoshototsubui_a +
-      "</td> " +
-      "<td>" +
-      sharyonoshototsubui_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "車両の損壊程度" +
-      "</td> " +
-      "<td>" +
-      sharyonosonkaiteido_a +
-      "</td> " +
-      "<td>" +
-      sharyonosonkaiteido_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "人身損傷程度" +
-      "</td> " +
-      "<td>" +
-      jinshinsonshoteido_a +
-      "</td> " +
-      "<td>" +
-      jinshinsonshoteido_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "用途別" +
-      "</td> " +
-      "<td>" +
-      yotobetsu_a +
-      "</td> " +
-      "<td>" +
-      yotobetsu_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "車両形状" +
-      "</td> " +
-      "<td>" +
-      sharyokeijo_a +
-      "</td> " +
-      "<td>" +
-      sharyokeijo_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "速度規制（指定のみ）" +
-      "</td> " +
-      "<td>" +
-      sokudokisei_a +
-      "</td> " +
-      "<td>" +
-      sokudokisei_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "一時停止規制_標識" +
-      "</td> " +
-      "<td>" +
-      ichijiteishikisei_hyoshiki_a +
-      "</td> " +
-      "<td>" +
-      ichijiteishikisei_hyoshiki_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "一時停止規制_表示" +
-      "</td> " +
-      "<td>" +
-      ichijiteishikisei_hyoji_a +
-      "</td> " +
-      "<td>" +
-      ichijiteishikisei_hyoji_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "ｴｱﾊﾞｯｸﾞの装備" +
-      "</td> " +
-      "<td>" +
-      eabaggunosobi_a +
-      "</td> " +
-      "<td>" +
-      eabaggunosobi_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "ｻｲﾄﾞｴｱﾊﾞｯｸﾞの装備" +
-      "</td> " +
-      "<td>" +
-      saidoeabaggunosobi_a +
-      "</td> " +
-      "<td>" +
-      saidoeabaggunosobi_b +
-      "</td>" +
-      "</tr>" +
-      "<table>" +
-      "座標: " +
-      lat.toFixed(7) +
-      "," +
-      lng.toFixed(7) +
-      " ※事故発生位置の座標<br>" +
-      "<a href=\https://www.google.com/maps?q=" +
-      lat +
-      "," +
-      lng +
-      "&hl=ja' target='_blank'>🌎Google Maps</a>" +
-      " " +
-      "<a href=\https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=" +
-      lat +
-      "," +
-      lng +
-      "&hl=ja' target='_blank'>📷Street View</a>"
+        "<big>" +
+        '<font color="red">' +
+        "事故内容: " +
+        jikonaiyo +
+        "</font>" +
+        "</big>" +
+        "</b>" +
+        "<br>" +
+        "発生日時: " +
+        hasseinichiji +
+        "<br>" +
+        "路線名: " +
+        rosemmei +
+        "<br>" +
+        "上下線: " +
+        jogesen +
+        "<br>" +
+        "死者数: " +
+        shishasu +
+        "<br>" +
+        "負傷者数: " +
+        fushoshasu +
+        "<br>" +
+        "天候: " +
+        tenko +
+        "<br>" +
+        "地形: " +
+        chikei +
+        "<br>" +
+        "路面状態: " +
+        romenjotai +
+        "<br>" +
+        "道路形状: " +
+        dorokeijo +
+        "<br>" +
+        "信号機: " +
+        shingoki +
+        "<br>" +
+        "車道幅員: " +
+        shadofukuin +
+        "<br>" +
+        "道路線形: " +
+        dorosenkei +
+        "<br>" +
+        "衝突地点: " +
+        shototsuchiten +
+        "<br>" +
+        "ゾーン規制: " +
+        zonkisei +
+        "<br>" +
+        "中央分離帯施設等: " +
+        chuobunritaishisetsuto +
+        "<br>" +
+        "歩車道区分: " +
+        hoshadokubun +
+        "<br>" +
+        "事故類型: " +
+        jikoruikei +
+        "<br>" +
+        // 表形式
+        "<table>" +
+        "<tr>" +
+        '<th width="140">' +
+        "項目" +
+        "</th> " +
+        '<th width="100">' +
+        "当事者A" +
+        "</th> " +
+        '<th width="100">' +
+        "当事者B" +
+        "</th>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "年齢層" +
+        "</td> " +
+        "<td>" +
+        nenrei_a +
+        "</td> " +
+        "<td>" +
+        nenrei_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "当事者種別" +
+        "</td> " +
+        "<td>" +
+        tojishashubetsu_a +
+        "</td> " +
+        "<td>" +
+        tojishashubetsu_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "車両の衝突部位" +
+        "</td> " +
+        "<td>" +
+        sharyonoshototsubui_a +
+        "</td> " +
+        "<td>" +
+        sharyonoshototsubui_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "車両の損壊程度" +
+        "</td> " +
+        "<td>" +
+        sharyonosonkaiteido_a +
+        "</td> " +
+        "<td>" +
+        sharyonosonkaiteido_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "人身損傷程度" +
+        "</td> " +
+        "<td>" +
+        jinshinsonshoteido_a +
+        "</td> " +
+        "<td>" +
+        jinshinsonshoteido_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "用途別" +
+        "</td> " +
+        "<td>" +
+        yotobetsu_a +
+        "</td> " +
+        "<td>" +
+        yotobetsu_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "車両形状" +
+        "</td> " +
+        "<td>" +
+        sharyokeijo_a +
+        "</td> " +
+        "<td>" +
+        sharyokeijo_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "速度規制（指定のみ）" +
+        "</td> " +
+        "<td>" +
+        sokudokisei_a +
+        "</td> " +
+        "<td>" +
+        sokudokisei_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "一時停止規制_標識" +
+        "</td> " +
+        "<td>" +
+        ichijiteishikisei_hyoshiki_a +
+        "</td> " +
+        "<td>" +
+        ichijiteishikisei_hyoshiki_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "一時停止規制_表示" +
+        "</td> " +
+        "<td>" +
+        ichijiteishikisei_hyoji_a +
+        "</td> " +
+        "<td>" +
+        ichijiteishikisei_hyoji_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "ｴｱﾊﾞｯｸﾞの装備" +
+        "</td> " +
+        "<td>" +
+        eabaggunosobi_a +
+        "</td> " +
+        "<td>" +
+        eabaggunosobi_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "ｻｲﾄﾞｴｱﾊﾞｯｸﾞの装備" +
+        "</td> " +
+        "<td>" +
+        saidoeabaggunosobi_a +
+        "</td> " +
+        "<td>" +
+        saidoeabaggunosobi_b +
+        "</td>" +
+        "</tr>" +
+        "<table>" +
+        "座標: " +
+        lat.toFixed(7) +
+        "," +
+        lng.toFixed(7) +
+        " ※事故発生位置の座標<br>" +
+        "<a href=https://www.google.com/maps?q=" +
+        lat +
+        "," +
+        lng +
+        "&hl=ja' target='_blank'>🌎Google Maps</a>" +
+        " " +
+        "<a href=https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=" +
+        lat +
+        "," +
+        lng +
+        "&hl=ja' target='_blank'>📷Street View</a>"
     )
     .addTo(map);
 });
@@ -709,17 +701,14 @@ map.on("click", "fushoujiko-1", (e) => {
   var dorosenkei = e.features[0].properties["道路線形"];
   var shototsuchiten = e.features[0].properties["衝突地点"];
   var zonkisei = e.features[0].properties["ゾーン規制"];
-  var chuobunritaishisetsuto =
-    e.features[0].properties["中央分離帯施設等"];
+  var chuobunritaishisetsuto = e.features[0].properties["中央分離帯施設等"];
   var hoshadokubun = e.features[0].properties["歩車道区分"];
   var jikoruikei = e.features[0].properties["事故類型"];
 
   var nenrei_a = e.features[0].properties["年齢（当事者A）"];
   var nenrei_b = e.features[0].properties["年齢（当事者B）"];
-  var tojishashubetsu_a =
-    e.features[0].properties["当事者種別（当事者A）"];
-  var tojishashubetsu_b =
-    e.features[0].properties["当事者種別（当事者B）"];
+  var tojishashubetsu_a = e.features[0].properties["当事者種別（当事者A）"];
+  var tojishashubetsu_b = e.features[0].properties["当事者種別（当事者B）"];
   var yotobetsu_a = e.features[0].properties["用途別（当事者A）"];
   var yotobetsu_b = e.features[0].properties["用途別（当事者B）"];
   var sharyokeijo_a = e.features[0].properties["車両形状（当事者A）"];
@@ -744,10 +733,8 @@ map.on("click", "fushoujiko-1", (e) => {
     e.features[0].properties["車両の損壊程度（当事者A）"];
   var sharyonosonkaiteido_b =
     e.features[0].properties["車両の損壊程度（当事者B）"];
-  var eabaggunosobi_a =
-    e.features[0].properties["エアバッグの装備（当事者A）"];
-  var eabaggunosobi_b =
-    e.features[0].properties["エアバッグの装備（当事者B）"];
+  var eabaggunosobi_a = e.features[0].properties["エアバッグの装備（当事者A）"];
+  var eabaggunosobi_b = e.features[0].properties["エアバッグの装備（当事者B）"];
   var saidoeabaggunosobi_a =
     e.features[0].properties["サイドエアバッグの装備（当事者A）"];
   var saidoeabaggunosobi_b =
@@ -762,229 +749,229 @@ map.on("click", "fushoujiko-1", (e) => {
     .setHTML(
       // 事故内容
       "<b>" +
-      "<big>" +
-      '<font color="blue">' +
-      "事故内容: " +
-      jikonaiyo +
-      "</font>" +
-      "</big>" +
-      "</b>" +
-      "<br>" +
-      "発生日時: " +
-      hasseinichiji +
-      "<br>" +
-      "路線名: " +
-      rosemmei +
-      "<br>" +
-      "上下線: " +
-      jogesen +
-      "<br>" +
-      "死者数: " +
-      shishasu +
-      "<br>" +
-      "負傷者数: " +
-      fushoshasu +
-      "<br>" +
-      "天候: " +
-      tenko +
-      "<br>" +
-      "地形: " +
-      chikei +
-      "<br>" +
-      "路面状態: " +
-      romenjotai +
-      "<br>" +
-      "道路形状: " +
-      dorokeijo +
-      "<br>" +
-      "信号機: " +
-      shingoki +
-      "<br>" +
-      "車道幅員: " +
-      shadofukuin +
-      "<br>" +
-      "道路線形: " +
-      dorosenkei +
-      "<br>" +
-      "衝突地点: " +
-      shototsuchiten +
-      "<br>" +
-      "ゾーン規制: " +
-      zonkisei +
-      "<br>" +
-      "中央分離帯施設等: " +
-      chuobunritaishisetsuto +
-      "<br>" +
-      "歩車道区分: " +
-      hoshadokubun +
-      "<br>" +
-      "事故類型: " +
-      jikoruikei +
-      "<br>" +
-      // 表形式
-      "<table " +
-      'style="font-size: 9pt; table-layout: fixed;"' +
-      ">" +
-      "<tr>" +
-      '<th width="140">' +
-      "項目" +
-      "</th> " +
-      '<th width="100">' +
-      "当事者A" +
-      "</th> " +
-      '<th width="100">' +
-      "当事者B" +
-      "</th>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "年齢層" +
-      "</td> " +
-      "<td>" +
-      nenrei_a +
-      "</td> " +
-      "<td>" +
-      nenrei_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "当事者種別" +
-      "</td> " +
-      "<td>" +
-      tojishashubetsu_a +
-      "</td> " +
-      "<td>" +
-      tojishashubetsu_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "車両の衝突部位" +
-      "</td> " +
-      "<td>" +
-      sharyonoshototsubui_a +
-      "</td> " +
-      "<td>" +
-      sharyonoshototsubui_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "車両の損壊程度" +
-      "</td> " +
-      "<td>" +
-      sharyonosonkaiteido_a +
-      "</td> " +
-      "<td>" +
-      sharyonosonkaiteido_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "人身損傷程度" +
-      "</td> " +
-      "<td>" +
-      jinshinsonshoteido_a +
-      "</td> " +
-      "<td>" +
-      jinshinsonshoteido_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "用途別" +
-      "</td> " +
-      "<td>" +
-      yotobetsu_a +
-      "</td> " +
-      "<td>" +
-      yotobetsu_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "車両形状" +
-      "</td> " +
-      "<td>" +
-      sharyokeijo_a +
-      "</td> " +
-      "<td>" +
-      sharyokeijo_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "速度規制（指定のみ）" +
-      "</td> " +
-      "<td>" +
-      sokudokisei_a +
-      "</td> " +
-      "<td>" +
-      sokudokisei_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "一時停止規制_標識" +
-      "</td> " +
-      "<td>" +
-      ichijiteishikisei_hyoshiki_a +
-      "</td> " +
-      "<td>" +
-      ichijiteishikisei_hyoshiki_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "一時停止規制_表示" +
-      "</td> " +
-      "<td>" +
-      ichijiteishikisei_hyoji_a +
-      "</td> " +
-      "<td>" +
-      ichijiteishikisei_hyoji_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "ｴｱﾊﾞｯｸﾞの装備" +
-      "</td> " +
-      "<td>" +
-      eabaggunosobi_a +
-      "</td> " +
-      "<td>" +
-      eabaggunosobi_b +
-      "</td>" +
-      "</tr>" +
-      "<tr>" +
-      "<td>" +
-      "ｻｲﾄﾞｴｱﾊﾞｯｸﾞの装備" +
-      "</td> " +
-      "<td>" +
-      saidoeabaggunosobi_a +
-      "</td> " +
-      "<td>" +
-      saidoeabaggunosobi_b +
-      "</td>" +
-      "</tr>" +
-      "<table>" +
-      "座標: " +
-      lat.toFixed(7) +
-      "," +
-      lng.toFixed(7) +
-      " ※事故発生位置の座標<br>" +
-      "<a href=\https://www.google.com/maps?q=" +
-      lat +
-      "," +
-      lng +
-      "&hl=ja' target='_blank'>🌎Google Maps</a>" +
-      " " +
-      "<a href=\https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=" +
-      lat +
-      "," +
-      lng +
-      "&hl=ja' target='_blank'>📷Street View</a>"
+        "<big>" +
+        '<font color="blue">' +
+        "事故内容: " +
+        jikonaiyo +
+        "</font>" +
+        "</big>" +
+        "</b>" +
+        "<br>" +
+        "発生日時: " +
+        hasseinichiji +
+        "<br>" +
+        "路線名: " +
+        rosemmei +
+        "<br>" +
+        "上下線: " +
+        jogesen +
+        "<br>" +
+        "死者数: " +
+        shishasu +
+        "<br>" +
+        "負傷者数: " +
+        fushoshasu +
+        "<br>" +
+        "天候: " +
+        tenko +
+        "<br>" +
+        "地形: " +
+        chikei +
+        "<br>" +
+        "路面状態: " +
+        romenjotai +
+        "<br>" +
+        "道路形状: " +
+        dorokeijo +
+        "<br>" +
+        "信号機: " +
+        shingoki +
+        "<br>" +
+        "車道幅員: " +
+        shadofukuin +
+        "<br>" +
+        "道路線形: " +
+        dorosenkei +
+        "<br>" +
+        "衝突地点: " +
+        shototsuchiten +
+        "<br>" +
+        "ゾーン規制: " +
+        zonkisei +
+        "<br>" +
+        "中央分離帯施設等: " +
+        chuobunritaishisetsuto +
+        "<br>" +
+        "歩車道区分: " +
+        hoshadokubun +
+        "<br>" +
+        "事故類型: " +
+        jikoruikei +
+        "<br>" +
+        // 表形式
+        "<table " +
+        'style="font-size: 9pt; table-layout: fixed;"' +
+        ">" +
+        "<tr>" +
+        '<th width="140">' +
+        "項目" +
+        "</th> " +
+        '<th width="100">' +
+        "当事者A" +
+        "</th> " +
+        '<th width="100">' +
+        "当事者B" +
+        "</th>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "年齢層" +
+        "</td> " +
+        "<td>" +
+        nenrei_a +
+        "</td> " +
+        "<td>" +
+        nenrei_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "当事者種別" +
+        "</td> " +
+        "<td>" +
+        tojishashubetsu_a +
+        "</td> " +
+        "<td>" +
+        tojishashubetsu_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "車両の衝突部位" +
+        "</td> " +
+        "<td>" +
+        sharyonoshototsubui_a +
+        "</td> " +
+        "<td>" +
+        sharyonoshototsubui_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "車両の損壊程度" +
+        "</td> " +
+        "<td>" +
+        sharyonosonkaiteido_a +
+        "</td> " +
+        "<td>" +
+        sharyonosonkaiteido_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "人身損傷程度" +
+        "</td> " +
+        "<td>" +
+        jinshinsonshoteido_a +
+        "</td> " +
+        "<td>" +
+        jinshinsonshoteido_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "用途別" +
+        "</td> " +
+        "<td>" +
+        yotobetsu_a +
+        "</td> " +
+        "<td>" +
+        yotobetsu_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "車両形状" +
+        "</td> " +
+        "<td>" +
+        sharyokeijo_a +
+        "</td> " +
+        "<td>" +
+        sharyokeijo_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "速度規制（指定のみ）" +
+        "</td> " +
+        "<td>" +
+        sokudokisei_a +
+        "</td> " +
+        "<td>" +
+        sokudokisei_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "一時停止規制_標識" +
+        "</td> " +
+        "<td>" +
+        ichijiteishikisei_hyoshiki_a +
+        "</td> " +
+        "<td>" +
+        ichijiteishikisei_hyoshiki_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "一時停止規制_表示" +
+        "</td> " +
+        "<td>" +
+        ichijiteishikisei_hyoji_a +
+        "</td> " +
+        "<td>" +
+        ichijiteishikisei_hyoji_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "ｴｱﾊﾞｯｸﾞの装備" +
+        "</td> " +
+        "<td>" +
+        eabaggunosobi_a +
+        "</td> " +
+        "<td>" +
+        eabaggunosobi_b +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>" +
+        "ｻｲﾄﾞｴｱﾊﾞｯｸﾞの装備" +
+        "</td> " +
+        "<td>" +
+        saidoeabaggunosobi_a +
+        "</td> " +
+        "<td>" +
+        saidoeabaggunosobi_b +
+        "</td>" +
+        "</tr>" +
+        "<table>" +
+        "座標: " +
+        lat.toFixed(7) +
+        "," +
+        lng.toFixed(7) +
+        " ※事故発生位置の座標<br>" +
+        "<a href=https://www.google.com/maps?q=" +
+        lat +
+        "," +
+        lng +
+        "&hl=ja' target='_blank'>🌎Google Maps</a>" +
+        " " +
+        "<a href=https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=" +
+        lat +
+        "," +
+        lng +
+        "&hl=ja' target='_blank'>📷Street View</a>"
     )
     .addTo(map);
 });
