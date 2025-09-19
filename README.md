@@ -9,7 +9,7 @@ https://shiwaku.github.io/npa-traffic-accident-map-on-maplibre/#15/35.92275/139.
     - 出典：https://github.com/shiwaku/npa-traffic-accident-pmtiles
         - 原初データ出典：[交通事故統計情報のオープンデータ](https://www.npa.go.jp/publications/statistics/koutsuu/opendata/index_opendata.html)
         - ライセンス：警察庁Webサイトの[利用規約](https://www.npa.go.jp/rules/index.html)を参照。
-    - 概要：警察庁が公開している、交通事故統計情報のオープンデータ（2019年、2020年、2021年、2022年、2023年）の本票をPMTiles形式に変換したデータです。
+    - 概要：警察庁が公開している、交通事故統計情報のオープンデータ（2019年、2020年、2021年、2022年、2023年、2024年）の本票をPMTiles形式に変換したデータです。
 
 ## 国土交通省
 - 国土数値情報 学校データ（令和3年）
