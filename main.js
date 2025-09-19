@@ -175,16 +175,17 @@ map.on("load", () => {
   // 交通事故データ
   map.addSource("pmtiles-jiko", {
     type: "vector",
-    url: "pmtiles://https://xs489works.xsrv.jp/pmtiles-data/traffic-accident/honhyo_2019-2023_convert.pmtiles",
+    // url: "pmtiles://https://xs489works.xsrv.jp/pmtiles-data/traffic-accident/honhyo_2019-2023_convert.pmtiles",
+    url: "pmtiles://https://xs489works.xsrv.jp/pmtiles-data/traffic-accident/honhyo_2019-2024_convert.pmtiles",
     attribution:
-      '<a href="https://www.npa.go.jp/publications/statistics/koutsuu/opendata/index_opendata.html">交通事故統計情報のオープンデータ（2019～2023年）（警察庁Webサイト）を加工して作成</a>',
+      '<a href="https://www.npa.go.jp/publications/statistics/koutsuu/opendata/index_opendata.html">交通事故統計情報のオープンデータ（2019～2024年）（警察庁Webサイト）を加工して作成</a>',
   });
 
   // 負傷事故ポイントレイヤ
   map.addLayer({
     id: "fushoujiko-1",
     source: "pmtiles-jiko",
-    "source-layer": "honhyo_20192023_convert",
+    "source-layer": "honhyo_20192024_convert",
     type: "circle",
     paint: {
       "circle-color": "#FFFFFF",
@@ -196,7 +197,7 @@ map.on("load", () => {
   map.addLayer({
     id: "fushoujiko-2",
     source: "pmtiles-jiko",
-    "source-layer": "honhyo_20192023_convert",
+    "source-layer": "honhyo_20192024_convert",
     type: "circle",
     paint: {
       "circle-color": "#003FFF",
@@ -209,7 +210,7 @@ map.on("load", () => {
     id: "fushoujiko-label",
     type: "symbol",
     source: "pmtiles-jiko",
-    "source-layer": "honhyo_20192023_convert",
+    "source-layer": "honhyo_20192024_convert",
     minzoom: 16,
     maxzoom: 23,
     layout: {
@@ -242,7 +243,7 @@ map.on("load", () => {
   map.addLayer({
     id: "shiboujiko-1",
     source: "pmtiles-jiko",
-    "source-layer": "honhyo_20192023_convert",
+    "source-layer": "honhyo_20192024_convert",
     type: "circle",
     paint: {
       "circle-color": "#FFFFFF",
@@ -254,7 +255,7 @@ map.on("load", () => {
   map.addLayer({
     id: "shiboujiko-2",
     source: "pmtiles-jiko",
-    "source-layer": "honhyo_20192023_convert",
+    "source-layer": "honhyo_20192024_convert",
     type: "circle",
     paint: {
       "circle-color": "#FF003F",
@@ -267,7 +268,7 @@ map.on("load", () => {
     id: "shiboujiko-label",
     type: "symbol",
     source: "pmtiles-jiko",
-    "source-layer": "honhyo_20192023_convert",
+    "source-layer": "honhyo_20192024_convert",
     minzoom: 16,
     maxzoom: 23,
     layout: {
