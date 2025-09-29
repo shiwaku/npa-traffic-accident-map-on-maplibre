@@ -1,62 +1,92 @@
 <html>
+  <head>
+    <title>警察庁 交通事故マップ</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+    <link
+      href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/pmtiles@2.11.0/dist/index.js"></script>
+    <script src="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.2.0/dist/maplibre-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.2.0/dist/maplibre-gl-geocoder.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-<head>
-  <title>警察庁 交通事故マップ</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
-  <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
-  <script src="https://unpkg.com/pmtiles@2.11.0/dist/index.js"></script>
-  <script src="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.2.0/dist/maplibre-gl-geocoder.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.2.0/dist/maplibre-gl-geocoder.css"
-    type="text/css" />
-  <link rel="stylesheet" href="./style.css" />
-</head>
-
-<body>
-  <script
-    src="https://cdn.jsdelivr.net/npm/@watergis/maplibre-gl-terradraw@1.3.14/dist/maplibre-gl-terradraw.umd.js"></script>
-  <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@watergis/maplibre-gl-terradraw@1.3.14/dist/maplibre-gl-terradraw.css" />
-  <div id="map"></div>
-  <!--<pre id="info"></pre>-->
-  <div id="county-legend" class="legend">
-    <div class="circle" style="
-          background-color: #FF003F;
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/@watergis/maplibre-gl-terradraw@1.3.14/dist/maplibre-gl-terradraw.umd.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@watergis/maplibre-gl-terradraw@1.3.14/dist/maplibre-gl-terradraw.css"
+    />
+    <div id="map"></div>
+    <!--<pre id="info"></pre>-->
+    <div id="county-legend" class="legend">
+      <div
+        class="circle"
+        style="
+          background-color: #ff003f;
           outline: 1px solid;
-          outline-color: #FFFFFF;
+          outline-color: #ffffff;
           display: inline-block;
-        "></div>
-    <span style="display: inline-block; margin-left: 5px">死亡事故</span><br />
-    <div class="circle" style="
-          background-color: #003FFF;
+        "
+      ></div>
+      <span style="display: inline-block; margin-left: 5px">死亡事故</span
+      ><br />
+      <div
+        class="circle"
+        style="
+          background-color: #003fff;
           outline: 1px solid;
-          outline-color: #FFFFFF;
+          outline-color: #ffffff;
           display: inline-block;
-        "></div>
-    <span style="display: inline-block; margin-left: 5px">負傷事故</span><br />
-    <div class="circle" style="
+        "
+      ></div>
+      <span style="display: inline-block; margin-left: 5px">負傷事故</span
+      ><br />
+      <div
+        class="circle"
+        style="
           background-color: #009800;
           outline: 1px solid;
-          outline-color: #FFFFFF;
+          outline-color: #ffffff;
           display: inline-block;
-        "></div>
-    <span style="display: inline-block; margin-left: 5px">小学校</span><br />
-    <div class="square" style="
+        "
+      ></div>
+      <span style="display: inline-block; margin-left: 5px">小学校</span><br />
+      <div
+        class="square"
+        style="
           background-color: rgb(213, 241, 228);
           outline: 1px solid;
           outline-color: rgb(45, 186, 118);
           display: inline-block;
-        "></div>
-    <span style="margin-left: 5px">ゾーン30または<br />最高速度区域30km/h</span>
-  </div>
-  <div class="map-overlay top">
-    <div class="map-overlay-inner">
-      <label>空中写真 不透明度: <span id="slider-opacity-value">50%</span></label>
-      <input id="slider-opacity" type="range" min="0" max="100" step="0" value="50" />
+        "
+      ></div>
+      <span style="margin-left: 5px"
+        >最高速度(区域)30km/h<br />(ゾーン30等含む)</span
+      >
     </div>
-  </div>
-  <script src="./main.js" defer></script>
-</body>
-
+    <div class="map-overlay top">
+      <div class="map-overlay-inner">
+        <label
+          >空中写真 不透明度: <span id="slider-opacity-value">50%</span></label
+        >
+        <input
+          id="slider-opacity"
+          type="range"
+          min="0"
+          max="100"
+          step="0"
+          value="50"
+        />
+      </div>
+    </div>
+    <script src="./main.js" defer></script>
+  </body>
 </html>
